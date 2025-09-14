@@ -1,24 +1,106 @@
 package com.example.mathprojectavishaigozland;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Random;
+import java.util.Scanner;
+
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button Btn_etgar;
+    private Button Btn_up20;
+    private Button Btn_kefel;
+    private TextView TV_firstNum;
+    private TextView TV_secondNum;
+    private EditText ET_answer;
+    private Button Btn_chek;
+    private Button Btn_save;
+    private Button Btn_allUsers;
+    private int result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        initViews();
+        createClickListener();
     }
+
+    private void initViews() {
+        TV_firstNum = findViewById(R.id.firstNum);
+        TV_secondNum = findViewById(R.id.secondNum);
+        ET_answer = findViewById(R.id.answer);
+        Btn_etgar = findViewById(R.id.etgar);
+        Btn_up20 = findViewById(R.id.up20);
+        Btn_kefel = findViewById(R.id.kefel);
+        Btn_chek = findViewById(R.id.chek);
+        Btn_save = findViewById(R.id.save);
+        Btn_allUsers = findViewById(R.id.allUsers);
+
+    }
+
+    private void createClickListener() {
+        Btn_kefel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random random = new Random();
+                int mana1 = random.nextInt(10);
+                int mana2 = random.nextInt(10);
+                int result = mana1 * mana2;
+
+                TV_firstNum.setText(mana1+"");
+                TV_secondNum.setText(mana2+"");
+
+            }
+        });
+        Btn_up20.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random random = new Random();
+                int mana1 = random.nextInt(10);
+                int mana2 = random.nextInt(10)+10;
+                result = mana1 * mana2;
+
+                TV_firstNum.setText(mana1+"");
+                TV_secondNum.setText(mana2+"");
+            }
+        }));
+        Btn_etgar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random random = new Random();
+                int mana1 = random.nextInt(10);
+                int mana2 = random.nextInt(90)+10;
+                result = mana1 * mana2;
+
+                TV_firstNum.setText(mana1+"");
+                TV_secondNum.setText(mana2+"");
+            }
+        });
+        Btn_chek.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String answer = ET_answer.getText().toString();
+                if(answer.equals(result+"")){
+                    Toast.makeText(getApplicationContext(), "good", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+
+
 }
+
+
