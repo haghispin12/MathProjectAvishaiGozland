@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Btn_save;
     private Button Btn_allUsers;
     private int result;
+    Exercis ex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         createClickListener();
+        Exercis ex = new Exercis(this);
     }
 
     private void initViews() {
@@ -52,53 +54,32 @@ public class MainActivity extends AppCompatActivity {
     private void createClickListener() {
         Btn_kefel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Random random = new Random();
-                int mana1 = random.nextInt(10);
-                int mana2 = random.nextInt(10);
-                int result = mana1 * mana2;
-
-                TV_firstNum.setText(mana1+"");
-                TV_secondNum.setText(mana2+"");
-
+            public void onClick(View V){
+                 ex.multy();
             }
         });
         Btn_up20.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Random random = new Random();
-                int mana1 = random.nextInt(10);
-                int mana2 = random.nextInt(10)+10;
-                result = mana1 * mana2;
-
-                TV_firstNum.setText(mana1+"");
-                TV_secondNum.setText(mana2+"");
+                ex.multy20();
             }
         }));
         Btn_etgar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Random random = new Random();
-                int mana1 = random.nextInt(10);
-                int mana2 = random.nextInt(90)+10;
-                result = mana1 * mana2;
-
-                TV_firstNum.setText(mana1+"");
-                TV_secondNum.setText(mana2+"");
+                ex.multyEtgar();
             }
         });
         Btn_chek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String answer = ET_answer.getText().toString();
-                if(answer.equals(result+"")){
-                    Toast.makeText(getApplicationContext(), "good", Toast.LENGTH_SHORT).show();
-                }
+                ex.answearAfirst();
             }
         });
 
-    }
 
+
+    }
 
 
 }
