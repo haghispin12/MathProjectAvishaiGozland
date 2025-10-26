@@ -1,4 +1,4 @@
-package com.example.mathprojectavishaigozland;
+ package com.example.mathprojectavishaigozland;
 
 import android.os.Bundle;
 

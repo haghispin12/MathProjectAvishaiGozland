@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button Btn_allUsers;
     private int result;
     Exercis ex;
+    private ExercisCallbackInterface exercisCallbackInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
+        exercisCallbackInterface = new ExercisCallbackInterface() {
+            @Override
+            public void showNumber(int firstNum, int secondNum) {
+                TV_firstNum.setText(""+firstNum);
+                TV_secondNum.setText(""+secondNum);
+            }
+        };
         createClickListener();
-        Exercis ex = new Exercis(this);
+         ex = new Exercis(exercisCallbackInterface);
     }
 
     private void initViews() {
@@ -73,15 +81,15 @@ public class MainActivity extends AppCompatActivity {
         Btn_chek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ex.answearAfirst();
+                boolean answear = ex.answearAfirst(ET_answer);
+                if (answear == true) {
+                    Toast.makeText(MainActivity.this, "מעולה!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "נסה שוב", Toast.LENGTH_SHORT).show();
+                }
             }
-        });
-
-
-
+        }
     }
-
-
 }
 
 
